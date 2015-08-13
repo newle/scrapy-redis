@@ -1,6 +1,7 @@
 # -*-coding:utf-8-*-  
   
-from scrapy import log  
+#from scrapy import log  
+import logging
   
 """避免被ban策略之一：使用useragent池。 
  
@@ -19,10 +20,7 @@ class RotateUserAgentMiddleware(UserAgentMiddleware):
         ua = random.choice(self.user_agent_list)  
         if ua:  
             #显示当前使用的useragent 
-            print "********Current UserAgent:%s************" %ua  
-  
-            #记录
-            log.msg('Current UserAgent: '+ua, level=1)  
+            logging.debug('Current UserAgent: ' + ua)  
             request.headers.setdefault('User-Agent', ua)  
   
     #the default user_agent_list composes chrome,I E,firefox,Mozilla,opera,netscape  

@@ -8,7 +8,7 @@
 from Html2Text import html_to_text
 from UploadUrl import replace_pic, upload
 
-from scrapy import log
+import logging
 
 import MySQLdb
 import time
@@ -53,10 +53,16 @@ class JyeooCrawlPipeline(object):
 
 
     def process_item(self, item, spider):
-        (question_html, question_pic) = replace_pic(item['question_html'], self.picfile)
-        (ans_html, ans_pic) = replace_pic(item['ans_html'], self.picfile)
-        (parse_html, parse_pic) = replace_pic(item['parse_html'], self.picfile)
-        (comments_html, comments_pic) = replace_pic(item['comments_html'], self.picfile)
+        if 'question_html' in item and 'ans_html' in item:
+            pass
+        else
+            logging.debug("crawl question_html failed")
+            return
+
+        (question_html, question_pic) = replace_pic(item['question_html'] if 'question_html' in item else "", self.picfile)
+        (ans_html, ans_pic) = replace_pic(item['ans_html'] if 'ans_html' in item else "", self.picfile)
+        (parse_html, parse_pic) = replace_pic(item['parse_html'] if 'parse_html' in item else "", self.picfile)
+        (comments_html, comments_pic) = replace_pic(item['comments_html'] if 'comments_html' in item else "", self.picfile)
 
         question_txt = html_to_text(question_html)
         ans_txt = html_to_text(ans_html)

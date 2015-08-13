@@ -27,3 +27,4 @@ class JyeooCrawlLoader(ItemLoader):
     default_item_class = JyeooCrawlItem 
     default_input_processor = MapCompose(lambda s: s.strip())
     default_output_processor = TakeFirst()
+    question_html_out = Join()

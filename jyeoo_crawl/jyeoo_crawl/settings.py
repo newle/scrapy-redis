@@ -51,7 +51,8 @@ DOWNLOAD_DELAY=1
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
 #    'jyeoo_crawl.middlewares.MyCustomDownloaderMiddleware': 543,
-    'jyeoo_crawl.spiders.rotate_useragent.RotateUserAgentMiddleware' :400 
+    'jyeoo_crawl.spiders.rotate_useragent.RotateUserAgentMiddleware' :400,
+    'jyeoo_crawl.spiders.SplitRequest.SplitRequestMiddleware' : 500
 }
 
 # Enable or disable extensions
@@ -111,7 +112,8 @@ ITEM_PIPELINES = {
 			}
 
 # Specify the host and port to use when connecting to Redis (optional).
-REDIS_HOST = 'localhost'
+#REDIS_HOST = 'localhost'
+REDIS_HOST = '10.134.71.142'
 REDIS_PORT = 6379
 
 # Specify the full Redis URL for connecting (optional).
