@@ -113,7 +113,7 @@ ITEM_PIPELINES = {
 
 # Specify the host and port to use when connecting to Redis (optional).
 #REDIS_HOST = 'localhost'
-REDIS_HOST = '10.134.71.142'
+REDIS_HOST = '10.134.77.90'
 REDIS_PORT = 6379
 
 # Specify the full Redis URL for connecting (optional).

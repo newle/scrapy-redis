@@ -90,48 +90,4 @@ class JyeooCrawlPipeline(object):
             #upload pic implement 
             #todo ...
             self.MsgQueue.put((i, self.num))
-
-
-
-
-        #add tags and category
-        #if item['referer'] in self.m_albumlist:
-        #    item['category'] = self.m_albumlist[item['referer']][0]
-        #    extra_tags = self.m_albumlist[item['referer']][1]
-        #    if extra_tags != "":
-        #        item['tag'] = item['tag'] + "," + extra_tags
-
-        ##insert into mysql db
-        #try:
-        #    print len(item['ori_pic_src'])
-        #    for i in range(len(item['ori_pic_src'])):
-        #        #test Variaty
-        #        if not self.varified(item, i):
-        #            print item['ori_pic_src'][i] + " is not varified!"
-        #            continue
-        #    
-        #        if self.m_dbcur.execute(self.m_testQuery, (item['ori_pic_src'][i], )):
-        #            print item['ori_pic_src'][i] + " has in db before we insert!"
-        #        else:
-        #            #2015年6月16日18:17:23 by yuanshaofei set category to 动图 and set category to tag
-        #            item['tag'] = item['category']
-        #            item['category'] = "动图"
-        #            #2015年6月16日18:17:23 by yuanshaofei set category to 动图 and set category to tag
-
-        #            print "update to server" + item['page_url']
-        #            self.m_dbcur.execute(self.m_insertQuery, (
-        #                item['ori_pic_src'][i],
-        #                item['pic_title'][i],
-        #                item['img_desc'][i],
-        #                item['page_url'],
-        #                item['page_title'],
-        #                item['publish_time'],
-        #                item['tag'],
-        #                item['category'],
-        #                item['referer']))
-        #            self.m_dbconn.commit()
-        #            print "update to server " + item['page_url']
-        #except Exception, e:
-        #    print e
-
         return item
