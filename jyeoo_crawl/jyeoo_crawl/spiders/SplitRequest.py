@@ -10,6 +10,7 @@ import logging
   
 import random  
 from scrapy.http import FormRequest 
+from scrapy.exceptions import IgnoreRequest
 #from scrapy.contrib.downloadermiddleware.useragent import UserAgentMiddleware  
 
 #p=2&f=0
@@ -39,6 +40,22 @@ class SplitRequestMiddleware(object):
                 for i in range(1, 101):
                     nextrequest = FormRequest(request.url, formdata={'f':'0','p':str(i)}, dont_filter=True)
                     self.crawler.engine.schedule(nextrequest, spider=self.crawler.spider)
+
+        #http://www.zuoyebao.com/q/1852560
+        if request.url.find("http://www.zuoyebao.com/q/") != -1 :
+            logging.debug("We Will add Cookie to Request: " + request.url)
+            #nextrequest = Request(request.url, cookies = [{}])
+            #self.crawler.engine.schedule(nextrequest, spider=self.crawler.spider)
+
+            request.cookies = { 
+                'PHPSESSID':'0dbgp2614kf8dd5po1d8n05pp5', 
+                'zyb_qCnt':'1', 
+                'zyb_uid':'625352',
+                'zyb_ukey':'l26qjc2sveo00sgcso0soo88g4wc'}
+            #self.crawler.engine.schedule(nextrequest, spider=self.crawler.spider)
+            #raise IgnoreRequest
+
+
 
 #            if request.body == "":
 #                nextrequest = FormRequest(request.url, formdata={'f':'0','p':'1'}, dont_filter=True)

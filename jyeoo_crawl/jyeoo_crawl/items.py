@@ -14,6 +14,7 @@ class JyeooCrawlItem(Item):
     # define the fields for your item here like:
     # name = Field()
     #question_txt = Field()
+    type_html = Field()
     label_html = Field()
     question_html = Field()
     #ans_txt = Field()
