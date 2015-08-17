@@ -16,6 +16,11 @@ def process_mofangge_url(value):
         return None
     return value
 
+def process_detail_request(request):
+    request.priority = 1
+    return request
+
+
 #p=2&f=0
 def getPageNum(postdata):
     values = postdata.split("&")
@@ -29,7 +34,7 @@ class mofanggeSpider(RedisMixin, CrawlSpider):
     name = "mofangge"
     redis_key = "mofangge:start_urls"
     rules =  (
-            Rule(LinkExtractor(process_value = process_mofangge_url), callback='parse_page', follow=True),
+            Rule(LinkExtractor(process_value = process_mofangge_url), process_request=process_detail_request, callback='parse_page', follow=True),
             Rule(LinkExtractor(allow=('http://www\.mofangge\.com/qlist/', )), follow=True),
     )
 

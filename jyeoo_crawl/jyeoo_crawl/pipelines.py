@@ -42,7 +42,7 @@ def getSQL(url):
     elif url.find("zuoyebao.com") != -1:
         return "replace into zuoyebao_classified" + s
     elif url.find("mofangge.com") != -1:
-        return "replace into mofang_classified" + s
+        return "replace into mofang_classified_2" + s
 
 def rmGarbageText(html):
     garbagetext = [
