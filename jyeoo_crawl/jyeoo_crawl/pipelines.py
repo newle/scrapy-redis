@@ -14,6 +14,7 @@ import MySQLdb
 import time
 import Queue
 import threading
+from scrapy.exceptions import DropItem
 
 
 def UploadUrl(msgQueue, suffix):
@@ -117,4 +118,6 @@ class JyeooCrawlPipeline(object):
             #upload pic implement 
             #todo ...
             self.MsgQueue.put((i, self.num))
-        return item
+
+        raise DropItem
+        #return item
